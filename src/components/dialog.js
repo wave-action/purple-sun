@@ -69,7 +69,3 @@ export class Dialog extends HTMLElement {
     this.style.zIndex = value;
   }
 }
-
-export function defineDialog() {
-  customElements.define("ps-dialog", Dialog);
-}

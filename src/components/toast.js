@@ -81,7 +81,3 @@ export class Toast extends HTMLElement {
     this.style.zIndex = value;
   }
 }
-
-export function defineToast() {
-  customElements.define("ps-toast", Toast);
-}

@@ -80,7 +80,3 @@ export class FocusArea extends HTMLElement {
     this.style.zIndex = value;
   }
 }
-
-export function defineFocusArea() {
-  customElements.define("ps-focus-area", FocusArea);
-}

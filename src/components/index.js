@@ -1,9 +1,11 @@
-import { defineFocusArea } from "./focusArea";
-import { defineDialog } from "./dialog";
-import { defineToast } from "./toast";
+import { FocusArea } from "./focusArea";
+import { Dialog } from "./dialog";
+import { Toast } from "./toast";
+import { Sheet } from "./sheet";
 
 export function define() {
-  defineFocusArea();
-  defineDialog();
-  defineToast();
+  customElements.define("ps-focus-area", FocusArea);
+  customElements.define("ps-dialog", Dialog);
+  customElements.define("ps-toast", Toast);
+  customElements.define("ps-sheet", Sheet);
 }
