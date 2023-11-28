@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Focus Area Example</title>
+
+	<script type="text/javascript" src="../dist/purple-sun.js"></script>
+</head>
+<body>
+  <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+  <p>This shound be bellow the focus area.</p>
+
+  <ps-focus-area 
+    id="focus-area"
+    open="true"
+    style="background-color: rgba(255, 255, 255, 0.6)"
+  >
+    <button id="close" style="position: absolute; top: 10px; right: 10px;">
+      X
+    </button>
+
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <h1>This is a Focus area</h1>
+      <p>Click the button in the right corner to close it.</p>
+    </div>
+
+  </ps-focus-area>
+
+  <script type="text/javascript">
+    const focusArea = document.getElementById("focus-area");
+    const close     = document.getElementById("close");
+
+    close.onclick = () => focusArea.open = "false";
+  </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   "description": "Vanilla JS components lib",
   "main": "dist/purple-sun.min.js",
   "scripts": {
-    "build": "esbuild src/index.js --bundle --minify --outfile=dist/purple-sun.min.js  --platform=browser",
+    "build": "esbuild src/index.js --bundle --minify --keep-names --outfile=dist/purple-sun.min.js  --platform=browser",
     "dev": "esbuild src/index.js --bundle --sourcemap --outfile=dist/purple-sun.js  --platform=browser --watch"
   },
   "repository": {
