@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Toast Example</title>
+
+	<script type="text/javascript" src="../dist/purple-sun.js"></script>
+</head>
+<body>
+  <button id="toast-open">Toast</button>
+
+  <ps-toast
+    id="toast" 
+    open="false"
+    close-in="5000"
+    style="padding: 20px;"
+  >
+    <div style="display: flex; justify-content: end;">
+      <button id="toast-close">X</button>
+    </div>
+
+    <span>This toast will close in 5 seconds</span>
+  </ps-toast>
+
+  <script type="text/javascript">
+    const toastOpen  = document.getElementById("toast-open");
+    const toast      = document.getElementById("toast");
+    const toastClose = document.getElementById("toast-close");
+
+    toastOpen.onclick = () => {
+      toast.open = "true";
+    }
+
+    toastClose.onclick = () => {
+      toast.open = "false";
+    }
+  </script>
+</body>
+</html>
