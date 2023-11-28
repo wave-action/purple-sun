@@ -1,0 +1,28 @@
+{
+  "name": "purple-sun",
+  "version": "0.1.0",
+  "description": "Vanilla JS components lib",
+  "main": "dist/purple-sun.min.js",
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --minify --outfile=dist/purple-sun.min.js  --platform=browser",
+    "dev": "esbuild src/index.js --bundle --sourcemap --outfile=dist/purple-sun.js  --platform=browser --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wave-action/purple-sun.git"
+  },
+  "keywords": [
+    "VanillaJS",
+    "Components",
+    "WebComponents"
+  ],
+  "author": "Mateus Ryan <mthryan@protonmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wave-action/purple-sun/issues"
+  },
+  "homepage": "https://github.com/wave-action/purple-sun#readme",
+  "devDependencies": {
+    "esbuild": "^0.19.8"
+  }
+}
