@@ -3,8 +3,14 @@ import { StyledComponent } from "./styledComponent";
 export abstract class TriggerComponent extends StyledComponent {
   static observedAttributes = ["trigger", "open"];
 
+  protected openEvent: Event;
+  protected closeEvent: Event;
+
   constructor(style: string) {
     super(style);
+
+    this.openEvent = new Event("open");
+    this.closeEvent = new Event("close");
   }
 
   get open(): string | null {
@@ -26,8 +32,10 @@ export abstract class TriggerComponent extends StyledComponent {
   protected handleOpenChange(value: any) {
     if (value === "true") {
       this.style.display = "block";
+      this.dispatchEvent(this.openEvent);
     } else {
       this.style.display = "none";
+      this.dispatchEvent(this.closeEvent);
     }
   }
 

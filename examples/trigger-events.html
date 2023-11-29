@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Trigger events</title>
+
+	<script type="text/javascript" src="../dist/purple-sun.js"></script>
+</head>
+<body>
+
+  <span>Open the console and click: </span>
+  <button id="toast-open">Toast</button>
+
+  <ps-toast
+    id="toast" 
+    trigger="toast-open"
+    close-in="5000"
+    style="padding: 20px;"
+  >
+    <div style="display: flex; justify-content: end;">
+      <ps-close for="toast">
+        <button>X</button>
+      </ps-close>
+    </div>
+
+    <span>
+      This toast will close in 5 seconds <br />
+      Check the console.
+    </span>
+  </ps-toast>
+
+  <script>
+    const toast = document.getElementById("toast");
+
+    toast.addEventListener("open", () => {
+      console.log("Toast open event listener");
+    });
+
+    toast.addEventListener("close", () => {
+      console.log("Toast close event listener");
+    });
+  </script>
+
+</body>
+</html>
