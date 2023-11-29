@@ -1,7 +1,9 @@
-export class Sheet extends HTMLElement {
+import { FloatingTriggerComponent } from "./core/floatingTriggerComponent";
+
+export class Sheet extends FloatingTriggerComponent {
+  static override observedAttributes = ["side", ...super.observedAttributes];
+
   static defaultSizeLimit = "250px";
-  
-  static observedAttributes = ["z-index", "open", "side"];
 
   static css = `
     :host {
@@ -16,61 +18,18 @@ export class Sheet extends HTMLElement {
     }
   `;
 
-  shadow: ShadowRoot;
-
   constructor() {
-    super();
+    super(Sheet.css);
 
-    this.shadow = this.attachShadow({mode: "open"});
-
-    const style = document.createElement("style");
     const slot  = document.createElement("slot");
-
-    style.innerHTML = Sheet.css;
-
-    this.shadow.appendChild(style);
     this.shadow.appendChild(slot);
   }
 
-  get open() {
-    return this.getAttribute("open");
-  }
-
-  set open(value) {
-    this.setAttribute("open", value);
-  }
-
-  
-  get zIndex() {
-    return this.getAttribute("z-index");
-  }
-
-  set zIndex(value) {
-    this.setAttribute("z-index", value);
-  }
-
-  attributeChangedCallback(name: string, _oldValue: any, newValue: any) {
+  attributeChangedCallback(name: string, oldValue: any, newValue: any) {
     switch (name) {
-    case "open": this.handleOpenChange(newValue); break;
-    case "z-index": this.handleZIndexChange(newValue); break;
     case "side": this.handleSideChange(newValue); break;
+    default: super.attributeChangedCallback(name, oldValue, newValue);
     }
-  }
-
-  private handleOpenChange(value: any) {
-    if (value === "true") {
-      this.style.display = "block";
-    } else {
-      this.style.display = "none";
-    }
-  }
-
-  private handleZIndexChange(value: any) {
-    if (isNaN(value)) {
-      return;
-    }
-
-    this.style.zIndex = value;
   }
 
   private handleSideChange(value: any) {

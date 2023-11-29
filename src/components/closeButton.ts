@@ -1,15 +1,13 @@
-export class CloseButton extends HTMLElement {
-  static observedAttributes: string[] = ["for", "forHtml"];
+import { CoreComponent } from "./core/coreCompoent";
+import { TriggerComponent } from "./core/triggerComponent";
 
-  shadow: ShadowRoot;
+export class CloseButton extends CoreComponent {
+  static observedAttributes: string[] = ["for", "forHtml"];
 
   constructor() {
     super();
 
-    this.shadow = this.attachShadow({mode: "open"});
-
     const slot  = document.createElement("slot");
-
     this.shadow.appendChild(slot);
   }
 
@@ -35,7 +33,8 @@ export class CloseButton extends HTMLElement {
 
   private handleTargetChange(value: any) {
     this.addEventListener("click", () => {
-      document.getElementById(value).open = "false";
+      const element = document.getElementById(value) as TriggerComponent;
+      element.open = "false";
     });
   }
 }

@@ -1,5 +1,7 @@
-export class Toast extends HTMLElement {
-  static observedAttributes = ["trigger", "z-index", "open", "close-in"];
+import { FloatingTriggerComponent } from "./core/floatingTriggerComponent";
+
+export class Toast extends FloatingTriggerComponent {
+  static override observedAttributes = ["close-in", ...super.observedAttributes];
 
   static css = `
     :host {
@@ -14,37 +16,11 @@ export class Toast extends HTMLElement {
     }
   `;
 
-  shadow: ShadowRoot;
-
   constructor() {
-    super();
+    super(Toast.css);
 
-    this.shadow = this.attachShadow({mode: "open"});
-
-    const style = document.createElement("style");
     const slot  = document.createElement("slot");
-
-    style.innerHTML = Toast.css;
-
-    this.shadow.appendChild(style);
     this.shadow.appendChild(slot);
-  }
-
-  get open() {
-    return this.getAttribute("open");
-  }
-
-  set open(value) {
-    this.setAttribute("open", value);
-  }
-
-  
-  get zIndex() {
-    return this.getAttribute("z-index");
-  }
-
-  set zIndex(value) {
-    this.setAttribute("z-index", value);
   }
 
   get closeIn() {
@@ -55,47 +31,13 @@ export class Toast extends HTMLElement {
     this.setAttribute("close-in", value);
   }
 
-  get trigger() {
-    return this.getAttribute("trigger");
-  }
-
-  set trigger(value) {
-    this.setAttribute("trigger", value);
-  }
-
-  attributeChangedCallback(name: string, _oldValue: any, newValue: any) {
-    switch (name) {
-    case "open": this.handleOpenChange(newValue); break;
-    case "z-index": this.handleZIndexChange(newValue); break;
-    case "trigger": this.handleTriggerChange(newValue); break;
+  protected override handleOpenChange(value: any) {
+    if (value === "true" && this.closeIn) {
+      setTimeout(() => {
+        this.open = "false";
+      // @ts-ignore
+      }, this.closeIn);
     }
-  }
-
-  private handleOpenChange(value: any) {
-    if (value === "true") {
-      this.style.display = "block";
-      if (this.closeIn) {
-        setTimeout(() => {
-          this.open = "false";
-        // @ts-ignore
-        }, this.closeIn);
-      }
-    } else {
-      this.style.display = "none";
-    }
-  }
-
-  private handleZIndexChange(value: any) {
-    if (isNaN(value)) {
-      return;
-    }
-
-    this.style.zIndex = value;
-  }
-
-  private handleTriggerChange(value: any) {
-    document.getElementById(value).addEventListener("click", () => {
-      this.open = "true";
-    });
+    super.handleOpenChange(value);
   }
 }
