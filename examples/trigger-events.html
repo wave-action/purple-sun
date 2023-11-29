@@ -10,11 +10,12 @@
 <body>
 
   <span>Open the console and click: </span>
-  <button id="toast-open">Toast</button>
+  <ps-open for="toast">
+    <button>Toast</button>
+  </ps-open>
 
   <ps-toast
     id="toast" 
-    trigger="toast-open"
     close-in="5000"
     style="padding: 20px;"
   >
