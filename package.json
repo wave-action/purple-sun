@@ -4,8 +4,8 @@
   "description": "Vanilla JS components lib",
   "main": "dist/purple-sun.min.js",
   "scripts": {
-    "build": "esbuild src/index.js --bundle --minify --keep-names --outfile=dist/purple-sun.min.js  --platform=browser",
-    "dev": "esbuild src/index.js --bundle --sourcemap --outfile=dist/purple-sun.js  --platform=browser --watch"
+    "build": "esbuild src/index.ts --bundle --minify --keep-names --outfile=dist/purple-sun.min.js  --platform=browser",
+    "dev": "esbuild src/index.ts --bundle --sourcemap --outfile=dist/purple-sun.js  --platform=browser --watch"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/wave-action/purple-sun#readme",
   "devDependencies": {
-    "esbuild": "^0.19.8"
+    "esbuild": "^0.19.8",
+    "typescript": "^5.3.2"
   }
 }

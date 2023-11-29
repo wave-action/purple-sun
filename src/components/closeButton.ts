@@ -1,5 +1,7 @@
 export class CloseButton extends HTMLElement {
-  static observedAttributes = ["for", "forHtml"];
+  static observedAttributes: string[] = ["for", "forHtml"];
+
+  shadow: ShadowRoot;
 
   constructor() {
     super();
@@ -22,16 +24,16 @@ export class CloseButton extends HTMLElement {
     this.setAttribute("for", value);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, _oldValue: any, newValue: any) {
     switch (name) {
     case "for":
     case "forHtml":
-      this.#handleTargetChange(newValue);
+      this.handleTargetChange(newValue);
       break;
     }
   }
 
-  #handleTargetChange(value) {
+  private handleTargetChange(value: any) {
     this.addEventListener("click", () => {
       document.getElementById(value).open = "false";
     });

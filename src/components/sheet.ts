@@ -16,6 +16,8 @@ export class Sheet extends HTMLElement {
     }
   `;
 
+  shadow: ShadowRoot;
+
   constructor() {
     super();
 
@@ -47,15 +49,15 @@ export class Sheet extends HTMLElement {
     this.setAttribute("z-index", value);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, _oldValue: any, newValue: any) {
     switch (name) {
-    case "open": this.#handleOpenChange(newValue); break;
-    case "z-index": this.#handleZIndexChange(newValue); break;
-    case "side": this.#handleSideChange(newValue); break;
+    case "open": this.handleOpenChange(newValue); break;
+    case "z-index": this.handleZIndexChange(newValue); break;
+    case "side": this.handleSideChange(newValue); break;
     }
   }
 
-  #handleOpenChange(value) {
+  private handleOpenChange(value: any) {
     if (value === "true") {
       this.style.display = "block";
     } else {
@@ -63,7 +65,7 @@ export class Sheet extends HTMLElement {
     }
   }
 
-  #handleZIndexChange(value) {
+  private handleZIndexChange(value: any) {
     if (isNaN(value)) {
       return;
     }
@@ -71,68 +73,68 @@ export class Sheet extends HTMLElement {
     this.style.zIndex = value;
   }
 
-  #handleSideChange(value) {
+  private handleSideChange(value: any) {
     switch (value) {
     case "left":
-        this.#topLeft();
-        this.#verticalLimited();
-        this.#horizontalFull();
+        this.topLeft();
+        this.verticalLimited();
+        this.horizontalFull();
         break;
     case "right":
-        this.#topRight();
-        this.#verticalLimited();
-        this.#horizontalFull();
+        this.topRight();
+        this.verticalLimited();
+        this.horizontalFull();
         break;
     case "top":
-        this.#topLeft();
-        this.#verticalFull();
-        this.#horizontalLimited();
+        this.topLeft();
+        this.verticalFull();
+        this.horizontalLimited();
         break;
     case "bottom":
-        this.#bottomLeft();
-        this.#verticalFull();
-        this.#horizontalLimited();
+        this.bottomLeft();
+        this.verticalFull();
+        this.horizontalLimited();
         break;
     }
   }
 
-  #topLeft() {
-    this.style.top = 0;
-    this.style.left = 0;
+  private topLeft() {
+    this.style.top = "0";
+    this.style.left = "0";
     this.style.removeProperty('bottom');
     this.style.removeProperty('right');
   }
 
-  #topRight() {
-    this.style.top = 0;
-    this.style.right = 0;
+  private topRight() {
+    this.style.top = "0";
+    this.style.right = "0";
     this.style.removeProperty('bottom');
     this.style.removeProperty('left');
   }
 
-  #bottomLeft() {
-    this.style.bottom = 0;
-    this.style.left = 0;
+  private bottomLeft() {
+    this.style.bottom = "0";
+    this.style.left = "0";
     this.style.removeProperty('top');
     this.style.removeProperty('right');
   }
 
-  #verticalFull() {
+  private verticalFull() {
     this.style.width = "100%";
     this.style.maxWidth = "100vw";
   }
 
-  #verticalLimited() {
+  private verticalLimited() {
     this.style.width = "100%";
     this.style.maxWidth = "250px";
   }
 
-  #horizontalFull() {
+  private horizontalFull() {
     this.style.height = "100%";
     this.style.maxHeight = "100vh";
   }
 
-  #horizontalLimited() {
+  private horizontalLimited() {
     this.style.height = "100%";
     this.style.maxHeight = "250px";
   }

@@ -15,6 +15,8 @@ export class Dialog extends HTMLElement {
     }
   `;
 
+  shadow: ShadowRoot;
+
   constructor() {
     super();
 
@@ -54,17 +56,17 @@ export class Dialog extends HTMLElement {
     this.setAttribute("trigger", value);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name: string, _oldValue: any, newValue: any) {
     switch (name) {
-    case "open": this.#handleOpenChange(newValue); break;
-    case "z-index": this.#handleZIndexChange(newValue); break;
+    case "open": this.handleOpenChange(newValue); break;
+    case "z-index": this.handleZIndexChange(newValue); break;
     case "trigger":
-        this.#handleTriggerChange(newValue);
+        this.handleTriggerChange(newValue);
         break;
     }
   }
 
-  #handleOpenChange(value) {
+  private handleOpenChange(value: any) {
     if (value === "true") {
       this.style.display = "block";
     } else {
@@ -72,7 +74,7 @@ export class Dialog extends HTMLElement {
     }
   }
 
-  #handleZIndexChange(value) {
+  private handleZIndexChange(value: any) {
     if (isNaN(value)) {
       return;
     }
@@ -80,7 +82,7 @@ export class Dialog extends HTMLElement {
     this.style.zIndex = value;
   }
 
-  #handleTriggerChange(value) {
+  private handleTriggerChange(value: any) {
     document.getElementById(value).addEventListener("click", () => {
       this.open = "true";
     });
