@@ -1,9 +1,9 @@
 export class FocusArea extends HTMLElement {
-  static observedAttributes = ["z-index", "open", "scroll-block"];
+  static observedAttributes = ["trigger", "z-index", "open", "scroll-block"];
 
   static css = `
     :host {
-      display: block;
+      display: none;
       position: absolute;
       top: 0;
       left: 0;
@@ -53,10 +53,19 @@ export class FocusArea extends HTMLElement {
     this.setAttribute("scroll-block", value);
   }
 
+  get trigger() {
+    return this.getAttribute("trigger");
+  }
+
+  set trigger(value) {
+    this.setAttribute("trigger", value);
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
     case "open": this.#handleOpenChange(newValue); break;
     case "z-index": this.#handleZIndexChange(newValue); break;
+    case "trigger": this.#handleTriggerChange(newValue); break;
     }
   }
 
@@ -78,5 +87,11 @@ export class FocusArea extends HTMLElement {
     }
 
     this.style.zIndex = value;
+  }
+
+  #handleTriggerChange(value) {
+    document.getElementById(value).addEventListener("click", () => {
+      this.open = "true";
+    });
   }
 }

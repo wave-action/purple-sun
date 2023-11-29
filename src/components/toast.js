@@ -1,9 +1,9 @@
 export class Toast extends HTMLElement {
-  static observedAttributes = ["z-index", "open", "close-in"];
+  static observedAttributes = ["trigger", "z-index", "open", "close-in"];
 
   static css = `
     :host {
-      display: block;
+      display: none;
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -53,10 +53,19 @@ export class Toast extends HTMLElement {
     this.setAttribute("close-in", value);
   }
 
+  get trigger() {
+    return this.getAttribute("trigger");
+  }
+
+  set trigger(value) {
+    this.setAttribute("trigger", value);
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
     case "open": this.#handleOpenChange(newValue); break;
     case "z-index": this.#handleZIndexChange(newValue); break;
+    case "trigger": this.#handleTriggerChange(newValue); break;
     }
   }
 
@@ -79,5 +88,11 @@ export class Toast extends HTMLElement {
     }
 
     this.style.zIndex = value;
+  }
+
+  #handleTriggerChange(value) {
+    document.getElementById(value).addEventListener("click", () => {
+      this.open = "true";
+    });
   }
 }

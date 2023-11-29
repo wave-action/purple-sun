@@ -10,7 +10,7 @@
 <body>
   <button id="sheet-open">Open the sheet</button>
 
-  <ps-focus-area id="focus-sheet" open="false" style="background-color: rgba(0, 0, 0, 0.3)">
+  <ps-focus-area id="focus-sheet" trigger="sheet-open" style="background-color: rgba(0, 0, 0, 0.3)">
     <ps-sheet side="bottom" style="max-height: 400px;">
       <div style="padding: 20px;">
         <div style="display: flex; justify-content: end;">
@@ -23,13 +23,8 @@
   </ps-focus-area>
 
   <script type="text/javascript">
-    const sheetOpen  = document.getElementById("sheet-open");
     const focusSheet = document.getElementById("focus-sheet");
     const sheetClose = document.getElementById("sheet-close");
-
-    sheetOpen.onclick = () => {
-      focusSheet.open = "true";
-    }
 
     sheetClose.onclick = () => {
       focusSheet.open = "false";

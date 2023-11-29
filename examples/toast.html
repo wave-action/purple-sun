@@ -12,7 +12,7 @@
 
   <ps-toast
     id="toast" 
-    open="false"
+    trigger="toast-open"
     close-in="5000"
     style="padding: 20px;"
   >
@@ -24,13 +24,8 @@
   </ps-toast>
 
   <script type="text/javascript">
-    const toastOpen  = document.getElementById("toast-open");
     const toast      = document.getElementById("toast");
     const toastClose = document.getElementById("toast-close");
-
-    toastOpen.onclick = () => {
-      toast.open = "true";
-    }
 
     toastClose.onclick = () => {
       toast.open = "false";

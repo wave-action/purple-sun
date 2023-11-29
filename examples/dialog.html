@@ -10,8 +10,8 @@
 <body>
   <button id="dialog-open">Open the dialog</button>
 
-  <ps-focus-area id="focus-dialog" open="false">
-    <ps-dialog style="padding: 20px;">
+  <ps-focus-area id="focus-dialog" trigger="dialog-open">
+    <ps-dialog style="padding: 20px;" open="true">
       <div style="display: flex; justify-content: end;">
         <button id="dialog-close">X</button>
       </div>
@@ -21,13 +21,8 @@
   </ps-focus-area>
 
   <script type="text/javascript">
-    const dialogOpen  = document.getElementById("dialog-open");
     const focusDialog = document.getElementById("focus-dialog");
     const dialogClose = document.getElementById("dialog-close");
-
-    dialogOpen.onclick = () => {
-      focusDialog.open = "true";
-    }
 
     dialogClose.onclick = () => {
       focusDialog.open = "false";

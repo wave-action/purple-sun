@@ -1,9 +1,9 @@
 export class Dialog extends HTMLElement {
-  static observedAttributes = ["z-index", "open"];
+  static observedAttributes = ["trigger", "z-index", "open"];
 
   static css = `
     :host {
-      display: block;
+      display: none;
       position: fixed;
       top: 50%;
       left: 50%;
@@ -46,10 +46,21 @@ export class Dialog extends HTMLElement {
     this.setAttribute("z-index", value);
   }
 
+  get trigger() {
+      return this.getAttribute("trigger");
+  }
+
+  set trigger(value) {
+    this.setAttribute("trigger", value);
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
     case "open": this.#handleOpenChange(newValue); break;
     case "z-index": this.#handleZIndexChange(newValue); break;
+    case "trigger":
+        this.#handleTriggerChange(newValue);
+        break;
     }
   }
 
@@ -67,5 +78,11 @@ export class Dialog extends HTMLElement {
     }
 
     this.style.zIndex = value;
+  }
+
+  #handleTriggerChange(value) {
+    document.getElementById(value).addEventListener("click", () => {
+      this.open = "true";
+    });
   }
 }
