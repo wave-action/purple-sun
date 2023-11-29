@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="../dist/purple-sun.js"></script>
 </head>
 <body>
+
   <button id="toast-open">Toast</button>
 
   <ps-toast
@@ -17,19 +18,13 @@
     style="padding: 20px;"
   >
     <div style="display: flex; justify-content: end;">
-      <button id="toast-close">X</button>
+      <ps-close for="toast">
+        <button>X</button>
+      </ps-close>
     </div>
 
     <span>This toast will close in 5 seconds</span>
   </ps-toast>
 
-  <script type="text/javascript">
-    const toast      = document.getElementById("toast");
-    const toastClose = document.getElementById("toast-close");
-
-    toastClose.onclick = () => {
-      toast.open = "false";
-    }
-  </script>
 </body>
 </html>

@@ -8,25 +8,22 @@
 	<script type="text/javascript" src="../dist/purple-sun.js"></script>
 </head>
 <body>
+
   <button id="dialog-open">Open the dialog</button>
 
   <ps-focus-area id="focus-dialog" trigger="dialog-open">
     <ps-dialog style="padding: 20px;" open="true">
+
       <div style="display: flex; justify-content: end;">
-        <button id="dialog-close">X</button>
+        <ps-close for="focus-dialog">
+          <button>X</button>
+        </ps-close>
       </div>
 
       <span>This is a dialog</span>
+
     </ps-dialog>
   </ps-focus-area>
 
-  <script type="text/javascript">
-    const focusDialog = document.getElementById("focus-dialog");
-    const dialogClose = document.getElementById("dialog-close");
-
-    dialogClose.onclick = () => {
-      focusDialog.open = "false";
-    }
-  </script>
 </body>
 </html>

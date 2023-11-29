@@ -8,27 +8,24 @@
 	<script type="text/javascript" src="../dist/purple-sun.js"></script>
 </head>
 <body>
+
   <button id="sheet-open">Open the sheet</button>
 
   <ps-focus-area id="focus-sheet" trigger="sheet-open" style="background-color: rgba(0, 0, 0, 0.3)">
-    <ps-sheet side="bottom" style="max-height: 400px;">
+    <ps-sheet side="left">
+
       <div style="padding: 20px;">
         <div style="display: flex; justify-content: end;">
-          <button id="sheet-close">X</button>
+          <ps-close for="focus-sheet">
+            <button>X</button>
+          </ps-close>
         </div>
 
         <span>This is a sheet</span>
       </div>
+
     </ps-sheet>
   </ps-focus-area>
 
-  <script type="text/javascript">
-    const focusSheet = document.getElementById("focus-sheet");
-    const sheetClose = document.getElementById("sheet-close");
-
-    sheetClose.onclick = () => {
-      focusSheet.open = "false";
-    }
-  </script>
 </body>
 </html>
